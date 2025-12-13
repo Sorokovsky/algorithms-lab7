@@ -3,6 +3,7 @@ from commands.enter_graph_command import EnterGraphCommand
 from commands.exit_command import ExitCommand
 from commands.generate_not_orientated_graph_command import GenerateNotOrientedGraphCommand
 from commands.generate_orientated_graph_command import GenerateOrientedGraphCommand
+from commands.out_to_file_command import OutToFileCommand
 from commands.show_adjacency_matrix_command import ShowAdjacencyMatrix
 from commands.show_adjancency_list_command import ShowAdjacencyListCommand
 from commands.show_edges_list_command import ShowEdgesListCommand
@@ -17,6 +18,7 @@ def main() -> None:
     context.add_command(ShowAdjacencyMatrix())
     context.add_command(ShowEdgesListCommand())
     context.add_command(ShowAdjacencyListCommand())
+    context.add_command(OutToFileCommand())
     context.start()
 
 if __name__ == '__main__':

@@ -14,7 +14,7 @@ def enter_graph() -> Graph:
                                     "Кількість ребер не може бути від'ємною.")
     edges: list[Tuple[str, str]] = []
     for i in range(edge_count):
-        print(f"{i + 1}-а Вершина")
+        print(f"{i + 1}-е ребро")
         first = input("Введіть першу вершину: ")
         while first not in vertices:
             first = input("Це не вершина. Спробуйте ще: ")

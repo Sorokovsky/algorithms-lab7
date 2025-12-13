@@ -25,6 +25,11 @@ class Graph:
 
     def print(self: "Graph") -> None:
         print("Graph: ")
+        print(self.to_string())
+
+    def to_string(self: "Graph") -> str:
+        result = ""
         seperator = ";"
         for first, second in self._edges:
-            print(f"({first}{seperator}{second})")
+            result += f"({first}{seperator}{second})\n"
+        return result

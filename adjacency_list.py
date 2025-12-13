@@ -29,17 +29,27 @@ class AdjacencyList:
         return result
 
     def print(self) -> None:
-        key_index = 0
-        for key, value in self._adjacency_list.items():
-            print(f"`{key}`: ", "{ ", sep="", end="")
-            for i in range(len(value)):
-                row = value[i]
-                end = ", "
-                if i == len(value) - 1:
-                    end = " "
-                print(f"`{row}`{end}", sep="", end="")
-            key_end = ","
-            if key_index == len(self._adjacency_list.items()) - 1:
-                key_end = ""
-            print("}", key_end, sep="")
-            key_index += 1
+        print(self.to_string())
+
+    def to_string(self: "AdjacencyList") -> str:
+        result = ""
+        open_scope: str = "{"
+        close_scope: str = "}"
+        i: int = 0
+        for vertex in self._adjacency_list.keys():
+            j: int = 0
+            result += f"`{vertex}`:{open_scope} "
+            for edge in self._adjacency_list[vertex]:
+                result += f"`{edge}`"
+                end_edge: str = ", "
+                if j == len(self._adjacency_list[vertex]) - 1:
+                    end_edge = ""
+                result += end_edge
+                j += 1
+            result += close_scope
+            end_vertex: str = ",\n"
+            if i == len(self._adjacency_list) - 1:
+                end_vertex = ""
+            result += end_vertex
+            i += 1
+        return result

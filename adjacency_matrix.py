@@ -41,11 +41,18 @@ class AdjacencyMatrix:
         return result
 
     def print(self: "AdjacencyMatrix") -> None:
-        print(f"  ", end="")
+        print(self.to_string())
+
+    def to_string(self: "AdjacencyMatrix") -> str:
+        result = "  "
         for vertex in self._vertices:
-            print(vertex, end=" ")
-        print()
+            result += f"{vertex} "
+        result += "\n"
         row_index = 0
         for row in self._matrix:
-            print(self._vertices[row_index], *row, sep=" ")
+            result += f"{self._vertices[row_index]} "
+            for vertex in row:
+                result += f"{vertex} "
+            result += "\n"
             row_index += 1
+        return result
