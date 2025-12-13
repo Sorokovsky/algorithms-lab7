@@ -10,11 +10,13 @@ class AdjacencyList:
         for first, second in graph.get_edges():
             if first not in self._adjacency_list:
                 self._adjacency_list[first] = []
-            self._adjacency_list[first].append(second)
+            if second not in self._adjacency_list[first]:
+                self._adjacency_list[first].append(second)
             if not self._is_oriented:
                 if not second in self._adjacency_list:
                     self._adjacency_list[second] = []
-                self._adjacency_list[second].append(first)
+                if first not in self._adjacency_list[second]:
+                    self._adjacency_list[second].append(first)
 
     def is_oriented(self: "AdjacencyList") -> bool:
         return self._is_oriented
