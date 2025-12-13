@@ -25,8 +25,6 @@ class Graph:
 
     def print(self: "Graph") -> None:
         print("Graph: ")
-        seperator = "-"
-        if self._is_orientated:
-            seperator = "->"
+        seperator = ";"
         for first, second in self._edges:
-            print(f"{first}{seperator}{second}")
+            print(f"({first}{seperator}{second})")
