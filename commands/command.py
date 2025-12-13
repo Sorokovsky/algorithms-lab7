@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class Command(ABC):
-    _id: int = 0
+    _id: int
 
     def get_id(self: "Command") -> int:
         return self._id

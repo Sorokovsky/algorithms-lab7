@@ -1,4 +1,5 @@
 from commands.command import Command
+from graph import Graph
 from helpers.choosing import choose_number
 
 
@@ -6,6 +7,7 @@ class CommandContext:
     _commands: list[Command] = []
     _title: str
     _is_running: bool = False
+    _graph: Graph | None = None
 
     def __init__(self: "CommandContext", title: str) -> None:
         self._title = title
@@ -15,12 +17,17 @@ class CommandContext:
 
     def start(self: "CommandContext") -> None:
         self._is_running = True
+        self._prepare_commands()
         self._loop()
+
+    def set_graph(self: "CommandContext", graph: Graph) -> None:
+        self._graph = graph
+
+    def get_graph(self: "CommandContext") -> Graph:
+        return self._graph
 
     def exit(self: "CommandContext") -> None:
         self._is_running = False
-        self._prepare_command()
-        self._loop()
 
     def _loop(self: "CommandContext") -> None:
         while self._is_running:
@@ -28,7 +35,7 @@ class CommandContext:
             command = self._choose_command()
             command.execute(self)
 
-    def _prepare_command(self: "CommandContext") -> None:
+    def _prepare_commands(self: "CommandContext") -> None:
         current_id: int = 0
         for command in self._commands:
             command.set_id(current_id)
