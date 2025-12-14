@@ -7,7 +7,7 @@ from helpers.parse_graph_from_string_matrix import parse_graph_from_matrix
 
 class ShowAdjacencyListFromMatrixFileCommand(Command):
     def get_name(self: "ShowAdjacencyListFromMatrixFileCommand") -> str:
-        return "Побудувати список суміжності із матриці(файлу)"
+        return "Побудувати список суміжності із матриці суміжності(файлу)"
 
     def execute(self: "ShowAdjacencyListFromMatrixFileCommand", context: CommandContext) -> None:
         file_name: str = input("Введіть назву файлу: ")

@@ -31,19 +31,32 @@ def is_graph_orientated_by_matrix(matrix: list[list[int]]) -> bool:
     return False
 
 
-def parse_edges(matrix: list[list[int]], vertices: list[str]) -> list[Tuple[str, str]]:
+def parse_edges(matrix: list[list[int]], vertices: list[str], is_orientated: bool) -> list[Tuple[str, str]]:
     result: list[tuple[str, str]] = []
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             first_vertex: str = vertices[i]
             second_vertex: str = vertices[j]
             if matrix[i][j] == 1:
-                result.append((first_vertex, second_vertex))
+                if is_orientated:
+                    result.append((first_vertex, second_vertex))
+                else:
+                    if contains_vertex(result, (first_vertex, second_vertex)) is False:
+                        result.append((first_vertex, second_vertex))
+
     return result
 
 
+def contains_vertex(edges: list[Tuple[str, str]], pair: Tuple[str, str]) -> bool:
+    for first, second in edges:
+        if first == pair[0] and second == pair[1]:
+            return True
+        if first == pair[1] and second == pair[0]:
+            return True
+    return False
+
 def parse_graph_from_matrix(string_matrix: str) -> Graph:
     vertices, matrix = prepare_matrix_end_vertices(string_matrix)
-    edges: list[Tuple[str, str]] = parse_edges(matrix, vertices)
     is_orientated: bool = is_graph_orientated_by_matrix(matrix)
+    edges: list[Tuple[str, str]] = parse_edges(matrix, vertices, is_orientated)
     return Graph(vertices, edges, is_orientated)
