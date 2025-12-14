@@ -1,4 +1,5 @@
 from commands.command_context import CommandContext
+from commands.depth_first_search_command import DepthFirstSearchCommand
 from commands.enter_graph_command import EnterGraphCommand
 from commands.exit_command import ExitCommand
 from commands.generate_not_orientated_graph_command import GenerateNotOrientedGraphCommand
@@ -23,6 +24,7 @@ def main() -> None:
     context.add_command(OutToFileCommand())
     context.add_command(ShowAdjacencyListFromMatrixFileCommand())
     context.add_command(ShowEdgeListFromMatrixFileCommand())
+    context.add_command(DepthFirstSearchCommand())
     context.start()
 
 if __name__ == '__main__':
