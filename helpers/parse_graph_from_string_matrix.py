@@ -43,7 +43,6 @@ def parse_edges(matrix: list[list[int]], vertices: list[str], is_orientated: boo
                 else:
                     if contains_vertex(result, (first_vertex, second_vertex)) is False:
                         result.append((first_vertex, second_vertex))
-
     return result
 
 
